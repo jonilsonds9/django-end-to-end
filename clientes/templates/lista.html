@@ -4,7 +4,8 @@
 
 <div class="card mt-3">
   <div class="card-header">
-    <h3>Listagem de clientes</h3>
+    <h3 class="float-start">Listagem de clientes</h3>
+    <a href="{% url 'cadastrar' %}" class="btn btn-success float-end">Cadastrar</a>
   </div>
   <div class="card-body">
     <table class="table table-striped">
@@ -14,14 +15,20 @@
         <th>Email</th>
         <th>Data de Nascimento</th>
         <th>Telefone</th>
+        <th>Ações</th>
       </thead>
       <tbody>
         {% for cliente in clientes %}
-          <th>{{ cliente.id }}</th>
-          <td>{{ cliente.nome }}</td>
-          <td>{{ cliente.email }}</td>
-          <td>{{ cliente.data_de_nascimento }}</td>
-          <td>{{ cliente.telefone }}</td>
+          <tr>
+            <th>{{ cliente.id }}</th>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.data_de_nascimento }}</td>
+            <td>{{ cliente.telefone }}</td>
+            <td>
+              <a class="btn btn-sm btn-info" href="{{ cliente.get_absolute_url }}">Detalhes</a>
+            </td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>

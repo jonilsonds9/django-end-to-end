@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Cliente(models.Model):
@@ -9,3 +10,6 @@ class Cliente(models.Model):
 
     def __str__(self) -> str:
         return f'{self.nome}, {self.email}, {self.data_de_nascimento}, {self.telefone}'
+
+    def get_absolute_url(self):
+        return reverse('detalhes', kwargs={'cliente_id': self.pk})
