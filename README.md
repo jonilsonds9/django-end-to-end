@@ -3,6 +3,12 @@
 Este projeto é para criação de um sistema de gerenciamento de cadastro de clientes 
 usando o Django.
 
+## Guias
+
+- **[Django: End-to-end parte 1](https://gitlab.com/jonilsonds9/django-end-to-end/-/snippets/2535545)**
+- **[Django: End-to-end parte 2](https://gitlab.com/jonilsonds9/django-end-to-end/-/snippets/2538203)**
+- **[Django: End-to-end parte 3](https://gitlab.com/jonilsonds9/django-end-to-end/-/snippets/2538213)**
+
 ## Primeiros passos
 
 ### Clone o projeto
