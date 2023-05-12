@@ -27,6 +27,8 @@
             <td>{{ cliente.telefone }}</td>
             <td>
               <a class="btn btn-sm btn-info" href="{{ cliente.get_absolute_url }}">Detalhes</a>
+              <a href="{% url 'alterar' cliente.id %}" class="btn btn-sm btn-warning">Alterar</a>
+              <button type="button" class="btn btn-danger btn-sm remove" data-cliente-id="{{ cliente.id }}">Excluir</button>
             </td>
           </tr>
         {% endfor %}
@@ -34,5 +36,45 @@
     </table>
   </div>
 </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deseja realmente excluir?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Você realmente deseja excluir este cliente? 
+        Está ação não pode ser revertida!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-danger confirma">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let cliente_id = 0;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    let btns = document.querySelectorAll('.remove');
+
+    for (let i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function(event) {
+        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        myModal.show();
+        cliente_id = event.target.getAttribute('data-cliente-id');
+      });
+    }
+
+    document.querySelector('.confirma').addEventListener('click', function() {
+      fetch(`/excluir/${cliente_id}`).then(() => window.location.reload());
+    });
+  });
+</script>
 
 {% endblock %}

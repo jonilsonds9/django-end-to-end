@@ -1,0 +1,23 @@
+{% extends "base_template.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<div class="card">
+  <div class="card-header">
+    <h3>Alterar cliente</h3>
+  </div>
+  <div class="card-body">
+    <form action="{% url 'alterar' cliente.id %}" method="post">
+      {% csrf_token %}
+
+      {% bootstrap_form form %}
+
+      <button type="submit" class="btn btn-success">Alterar</button>
+      <a href="{% url 'listar' %}" class="btn btn-secondary">Voltar</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
